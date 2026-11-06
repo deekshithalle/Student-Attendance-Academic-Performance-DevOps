@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Attendance and Academic Performance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Student Attendance and Academic Performance Management System</h1>
+      <p>Faculty portal · Attendance · Internal marks · Performance reports</p>
+    </div>
+    <span class="pill">Faculty</span>
+  </header>
+
+  <main>
+    <section id="loginPanel" class="panel login-panel">
+      <h2>Faculty Login</h2>
+      <form id="loginForm">
+        <label>Username<input id="username" value="faculty" required></label>
+        <label>Password<input id="password" type="password" value="faculty123" required></label>
+        <button type="submit" id="loginBtn">Login</button>
+      </form>
+      <p class="hint">Demo credentials: faculty / faculty123</p>
+    </section>
+
+    <section id="appPanel" hidden>
+      <section class="stats">
+        <article class="stat"><span>Total students</span><strong id="totalStudents">0</strong></article>
+        <article class="stat"><span>Attendance records</span><strong id="attendanceRecords">0</strong></article>
+        <article class="stat"><span>Overall attendance</span><strong id="overallAttendance">0%</strong></article>
+        <article class="stat"><span>Marks records</span><strong id="marksRecords">0</strong></article>
+      </section>
+
+      <nav>
+        <button class="tab active" data-tab="studentsSection">Students</button>
+        <button class="tab" data-tab="attendanceSection">Attendance</button>
+        <button class="tab" data-tab="marksSection">Internal Marks</button>
+        <button class="tab" data-tab="reportsSection">Performance Reports</button>
+        <button id="logoutBtn" class="secondary">Logout</button>
+      </nav>
+
+      <section id="studentsSection" class="panel tab-panel">
+        <h2>Student Registration and Details</h2>
+        <form id="studentForm" class="form-grid">
+          <label>Roll number<input id="rollNo" required placeholder="AIML004"></label>
+          <label>Student name<input id="studentName" required placeholder="Student name"></label>
+          <label>Email<input id="studentEmail" type="email" required placeholder="student@example.com"></label>
+          <label>Department<input id="department" value="AIML"></label>
+          <label>Year<input id="year" value="3"></label>
+          <button type="submit" id="addStudentBtn">Add Student</button>
+        </form>
+        <div class="table-wrap"><table><thead><tr><th>Roll No</th><th>Name</th><th>Email</th><th>Department</th><th>Year</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
+      </section>
+
+      <section id="attendanceSection" class="panel tab-panel" hidden>
+        <h2>Mark Attendance</h2>
+        <div class="inline-form">
+          <label>Date<input id="attendanceDate" type="date" required></label>
+          <button id="loadAttendanceBtn" type="button" class="secondary">Load Students</button>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Roll No</th><th>Student</th><th>Status</th></tr></thead><tbody id="attendanceBody"></tbody></table></div>
+        <button id="saveAttendanceBtn" type="button">Save Attendance</button>
+        <h3>Attendance Percentage</h3>
+        <button id="refreshSummaryBtn" type="button" class="secondary">Calculate Percentage</button>
+        <div class="table-wrap"><table><thead><tr><th>Roll No</th><th>Student</th><th>Present</th><th>Total</th><th>Percentage</th></tr></thead><tbody id="summaryBody"></tbody></table></div>
+      </section>
+
+      <section id="marksSection" class="panel tab-panel" hidden>
+        <h2>Enter Internal Marks</h2>
+        <form id="marksForm" class="form-grid">
+          <label>Student<select id="marksStudent" required></select></label>
+          <label>Subject<input id="subject" required placeholder="Machine Learning"></label>
+          <label>Internal 1 (0-30)<input id="internal1" type="number" min="0" max="30" step="0.5" required></label>
+          <label>Internal 2 (0-30)<input id="internal2" type="number" min="0" max="30" step="0.5" required></label>
+          <label>Semester exam (0-60)<input id="semester" type="number" min="0" max="60" step="0.5" required></label>
+          <label>Assignment (0-10)<input id="assignment" type="number" min="0" max="10" step="0.5" required></label>
+          <button type="submit" id="saveMarksBtn">Save Marks</button>
+        </form>
+        <p class="hint">Total = Semester exam (60) + average of Internal 1 and Internal 2 (30) + Assignment (10). Maximum total: 100.</p>
+      </section>
+
+      <section id="reportsSection" class="panel tab-panel" hidden>
+        <h2>Student Performance Reports</h2>
+        <div class="inline-form">
+          <label>Student<select id="reportStudent"></select></label>
+          <button id="generateReportBtn" type="button">Generate Report</button>
+        </div>
+        <div id="reportOutput" class="report-output" aria-live="polite">Select a student and generate a report.</div>
+      </section>
+      <p id="status" role="status"></p>
+    </section>
+  </main>
+  <footer>Student Attendance and Academic Performance Management System · DevOps Academic Project</footer>
+  <script src="app.js"></script>
+</body>
+</html>

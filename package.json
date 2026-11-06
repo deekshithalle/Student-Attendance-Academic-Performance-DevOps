@@ -1,0 +1,17 @@
+{
+  "name": "student-attendance-academic-performance",
+  "version": "1.0.0",
+  "description": "Student Attendance and Academic Performance Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "test:selenium": "node tests/attendance.selenium.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.51.0"
+  }
+}
